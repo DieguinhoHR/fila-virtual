@@ -13,9 +13,3 @@ $app['debug'] = true;
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path' => __DIR__ . '/views'
 ));
-// use App\Infrastrutucture\Database\Connectors\{Connector, MysqlConnector};
-// use App\Core\Domain\User;
-// use App\Core\Repositories\UserPersistence;
-
-// $connect  = new UserPersistence(new MysqlConnector()->createConnect($connect));
-// $connect->findAll();

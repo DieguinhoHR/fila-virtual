@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__ . '/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
+require_once 'routes.php';
 
-$app->get('/', function() use ($app) {			
-	return $app['twig']->render('index.twig');
-});
+use App\Infrastrutucture\Database\Connectors\{Connector, MysqlConnector};
+use App\Core\Domain\User;
+use App\Core\Repositories\UserPersistence;
 
-return $app;
