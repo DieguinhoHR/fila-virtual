@@ -1,0 +1,40 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+ 	<h2>Usuários</h2>
+
+    <table class="table table table-striped table-hover">
+        <thead>
+        	<th>Id:</th>
+            <th>Usuário:</th>
+            <th>E-mail:</th>            
+            <th colspan="2">Ações:</th>
+        </thead>
+
+        <tbody> 
+          {% for user in users  %}                
+                <tr>
+                    <td class="action">{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <form action="/user/edit/{{ user.id }}">   
+                        <td class="action">                        
+                            <button type="submit" 
+                                    class="btn btn-primary btn-sm">Atualizar</button>                         
+                        </td>
+                    </form>
+
+                    <form action="/user/delete/{{ user.id }}">       
+                        <td class="action">
+                            <button type="submit" 
+                                    class="btn btn-danger btn-sm">Deletar</button>    
+                        </td>
+                    </form>    
+                </tr>                
+           {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">        
+    </div>
+{% endblock  %}
