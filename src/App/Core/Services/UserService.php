@@ -14,7 +14,7 @@ class UserService
 	}
 
     public function findAll()
-    {
+    {        
         return $this->userPersistence->findAll();
     }
 

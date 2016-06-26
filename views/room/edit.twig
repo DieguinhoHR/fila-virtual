@@ -1,0 +1,39 @@
+{% extends 'layout.twig' %}
+
+{% block content %}	
+	<div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+            <h1>Atualizar sala de Reunião</h1>
+
+            <hr>
+
+            <form action="/room/edit/{{id}}"  method="post">   
+                <div class="form-group">
+                    <label for="name">Número da sala de aula:</label>
+                    <input type="number"
+                           name="number"
+                           id="number"
+                           class="form-control"
+                           value="{{ number }}" required>
+                </div>
+
+                <label for="reserved">Reservar</label>
+                <div class="form-group">                    
+                    <select name="reserved" value="{{ reserved }}">
+                        {% if reserved == 1 %}
+                            <option value="1">Sim</option>                        
+                            <option value="0">Não</option>                      
+                        {% else %}   
+                            <option value="0">Não</option>                      
+                            <option value="1">Sim</option>                                                    
+                        {% endif %}    
+                    </select> 
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </div>
+            </form>          
+        </div>
+    </div>
+{% endblock  %}

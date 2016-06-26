@@ -1,0 +1,53 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+ 	<h2>Salas de Reuniões</h2>   
+
+    <form action="/room/register">       
+        <button type="submit" 
+            class="btn btn-success btn-sm">Cadastrar nova sala</button>             
+    </form>      
+
+    <table class="table table table-striped table-hover">
+        <thead>
+        	<th>Id</th>
+            <th>Criado</th>
+            <th>Atualizado</th>
+            <th>Número</th>
+            <th>Reservado</th>            
+            <th colspan="2">Ações:</th>
+        </thead>
+
+        <tbody> 
+            {% for room in rooms  %}                
+                <tr>
+                    <td class="action">{{ room.id }}</td>                    
+                    <td>{{ room.created_at|date("d/m/Y H:i:s", false) }}</td>
+                    <td>{{ room.updated_at|date("d/m/Y H:i:s", false) }}</td>                    
+                    <td>{{ room.number }}</td>
+                    {% if room.reserved == 1 %}
+                        <td><span class="label label-primary">Sim</span></td>
+                    {% else %}
+                        <td><span class="label label-success">Não</span></td>    
+                    {% endif %}
+                    <form action="/room/edit/{{ room.id }}">   
+                        <td class="action">                        
+                            <button type="submit" 
+                                    class="btn btn-primary btn-sm">Atualizar</button>                         
+                        </td>
+                    </form>
+
+                    <form action="/room/delete/{{ room.id }}">       
+                        <td class="action">
+                            <button type="submit" 
+                                    class="btn btn-danger btn-sm">Deletar</button>    
+                        </td>
+                    </form>    
+                </tr>                
+            {% endfor %}
+        </tbody>      
+    </table>
+
+    <div class="text-center">        
+    </div>
+{% endblock  %}

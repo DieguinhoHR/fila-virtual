@@ -3,9 +3,7 @@ namespace App\Controllers;
 
 use Silex\Application;
 use Silex\Api\ControllerProviderInterface;
-
 use Symfony\Component\HttpFoundation\Request;
-
 use App\Core\Domain\User;
 
 class UserController extends BaseController implements ControllerProviderInterface 
@@ -14,8 +12,7 @@ class UserController extends BaseController implements ControllerProviderInterfa
 	{			
 		$this->list($app);
 		$this->store($app);
-		$this->edit($app);
-		$this->update($app);
+		$this->edit($app);		
 		$this->delete($app);
 		return $this->controllers;
 	}
@@ -52,11 +49,20 @@ class UserController extends BaseController implements ControllerProviderInterfa
 
 	private function edit(Application $app)
 	{		
-    	$this->controllers->get("/edit/{id}", function($id) use ($app) {        		
+    	$this->controllers->match("/edit/{id}", function($id, Request $request) use ($app) {        	
+   			if ('POST' == $request->getMethod()) {		
+   				$user = new User;
+				$user->setId($request->get('id'));
+				$user->setUsername($request->get('username'));
+				$user->setEmail($request->get('email'));
+				$user->setPassword($request->get('password'));	   	        	
+				$app['userService']->update($user);	
+        		return $app['twig']->render('user/list.twig', array(
+        			'users' => $app['userService']->findAll()
+       			));
+   			}
         	$user = $app['userService']->findBy($id);	
-
         	foreach($user as $u) 
-
         	return $app['twig']->render('user/edit.twig', array(
         		'id'       => $u->id,
         		'username' => $u->username,
@@ -66,28 +72,10 @@ class UserController extends BaseController implements ControllerProviderInterfa
     	});			 
 	}
 
-	private function update(Application $app)
-	{
-		$app->post("/edit/{id}", function($id, Request $request) use ($app) {     						
-			$user = new User;
-
-			$user->setId($request->get('id'));
-			$user->setUsername($request->get('username'));
-			$user->setEmail($request->get('email'));
-			$user->setPassword($request->get('password'));	   	        	
-
-			$app['userService']->update($user);	
-
-        	return $app['twig']->render('user/list.twig', array(
-        		'users' => $app['userService']->findAll()
-       		));
-    	});
-	}
-
 	private function delete(Application $app)
 	{		
-    	$this->controllers->get("delete/{id}", function($id) use ($app) {        		
-        	$app['userService']->delete($id);	
+    	$this->controllers->match("/delete/{id}", function($id) use ($app) {        		
+    		$app['userService']->delete($id);	
         	return $app['twig']->render('user/list.twig', array(
         	 	'users' => $app['userService']->findAll()
        		));
