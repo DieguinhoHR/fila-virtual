@@ -54,9 +54,11 @@ class UserPersistence
 		$email = $user->getEmail();
 		$password = $user->getPassword();
 
+		$passwordCript = sha1($password);
+
 		$statement->bindParam(':username', $username, PDO::PARAM_STR);       
 		$statement->bindParam(':email', $email, PDO::PARAM_STR); 
-		$statement->bindParam(':password', $password, PDO::PARAM_STR);	
+		$statement->bindParam(':password', $passwordCript, PDO::PARAM_STR);	
 		$statement->execute();
 	}
 
@@ -73,10 +75,13 @@ class UserPersistence
 		$email = $user->getEmail();
 		$password = $user->getPassword();
 		$id = $user->getId();
+
+
+		$passwordCript = sha1($password);
 		
 		$statement->bindParam(':username', $username, PDO::PARAM_STR);       
 		$statement->bindParam(':email', $email, PDO::PARAM_STR); 
-		$statement->bindParam(':password', $password, PDO::PARAM_STR);	
+		$statement->bindParam(':password', $passwordCript, PDO::PARAM_STR);	
 		$statement->bindParam(':id', $id, PDO::PARAM_INT);
 		$statement->execute();		
 	}

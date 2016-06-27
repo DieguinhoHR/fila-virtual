@@ -8,7 +8,7 @@ class HomeController extends BaseController implements ControllerProviderInterfa
 {
 	public function connect(Application $app)
 	{		 
-		$this->controllers->get('/', function(Application $app) {			
+		$this->controllers->get('/', function(Application $app) {				    		
 			return $app['twig']->render('home.twig');
 		});	    	
 		return $this->controllers;

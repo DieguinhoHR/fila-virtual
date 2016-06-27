@@ -11,6 +11,7 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -24,9 +25,14 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Util\\' => 22,
             'Symfony\\Polyfill\\Php70\\' => 23,
+            'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\Validator\\' => 28,
+            'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Security\\' => 27,
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\PropertyAccess\\' => 33,
             'Symfony\\Component\\OptionsResolver\\' => 34,
@@ -35,9 +41,11 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Form\\' => 23,
+            'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\Debug\\' => 24,
+            'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\BrowserKit\\' => 29,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Silex\\' => 6,
@@ -64,9 +72,17 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Symfony\\Polyfill\\Util\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
+        ),
         'Symfony\\Polyfill\\Php70\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
+        ),
+        'Symfony\\Polyfill\\Php56\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -75,6 +91,18 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Symfony\\Component\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/validator',
+        ),
+        'Symfony\\Component\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Security\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/security',
         ),
         'Symfony\\Component\\Routing\\' => 
         array (
@@ -108,6 +136,10 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
         array (
             0 => __DIR__ . '/..' . '/symfony/form',
         ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
@@ -119,6 +151,10 @@ class ComposerStaticInitff135eab54c4c41f0557dd927fc78283
         'Symfony\\Component\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
+        ),
+        'Symfony\\Component\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/config',
         ),
         'Symfony\\Component\\BrowserKit\\' => 
         array (

@@ -9,8 +9,8 @@ require_once __DIR__ . "/../../vendor/autoload.php";
 require_once 'config/connect.php';
 
 use App\Core\Domain\{User, Room};
-use App\Core\Repositories\{UserPersistence, RoomPersistence};
-use App\Core\Services\{UserService, RoomService};
+use App\Core\Repositories\{UserPersistence, RoomPersistence, AuthPersistence};
+use App\Core\Services\{UserService, RoomService, AuthService};
 
 use App\Infrastrutucture\Database\Connectors\MysqlConnector;
 
@@ -31,8 +31,8 @@ $app['userService'] = function() {
 		'password' => 'secret'
 	];
 
-$mysqlConnector = new MysqlConnector();
-$mysqlConnector->connect($databaseConfig);
+	$mysqlConnector = new MysqlConnector();
+	$mysqlConnector->connect($databaseConfig);
 
 	$userPersistence = new UserPersistence($mysqlConnector);
 	$userService = new UserService($userPersistence);
@@ -54,6 +54,22 @@ $app['roomService'] = function() {
 	$roomService = new RoomService($roomPersistence);
 
 	return $roomService;
+};
+
+$app['authService'] = function() {
+	$databaseConfig = [
+		'dsn'      => 'host=localhost;dbname=fila_virtual', 
+		'user'     => 'root',
+		'password' => 'secret'
+	];
+
+    $mysqlConnector = new MysqlConnector();
+	$mysqlConnector->connect($databaseConfig);
+
+	$authPersistence = new AuthPersistence($mysqlConnector);
+	$authService = new AuthService($authPersistence);
+
+	return $authService;
 };
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(

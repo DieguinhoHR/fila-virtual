@@ -10,9 +10,21 @@ class AuthController extends BaseController implements ControllerProviderInterfa
 {
 	public function connect(Application $app)
 	{		       
-		$this->controllers->get('/login', function(Application $app) {			
+		$this->controllers->match('/login', function(Application $app, Request $request) {			
+			if ('POST' == $request->getMethod()) {		
+				$password = sha1($request->get('password'));		
+				$email = $request->get('email')	;
+				$result = $app['authService']->findBy($request->get('email'), $password);
+
+				if ($result == true) {				
+			        
+					return $app['twig']->render('room/list.twig', [
+	          			'rooms' =>  $app['roomService']->findAll()
+	       			]);
+				}
+			}
 			return $app['twig']->render('auth/login.twig');
-		});	  
+		});	  		
 		return $this->controllers;
 	}
 }
